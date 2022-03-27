@@ -1,0 +1,59 @@
+#include <SFML/Graphics.hpp>
+
+#include<stdlib.h>
+#include<time.h>
+#include<windows.h>
+void main(int argc, char** argv[]) {
+	srand(time(NULL));
+
+	// size window 
+	sf::RenderWindow window(sf::VideoMode(1366, 720),
+		"Rendering the rectangle.");
+
+	while (true) {
+		float a = 20;
+		float	b = 20;
+		int x = 1;
+		
+
+		while (window.isOpen()) {
+			
+			// Creating our shape.
+			sf::RectangleShape rectangle(sf::Vector2f(a, b));
+			rectangle.setOrigin(rectangle.getSize().x / 2,
+			rectangle.getSize().y / 2);
+			// set position  our shape. x and y coordinates
+			rectangle.setPosition(rand() % 1360, rand() % 720);
+			sf::Event event;
+			while (window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed) {
+					// Close window button clicked.
+					window.close();
+				}
+			}
+			
+			if (x < 15) {
+			a=	a + 20.0f;
+			b=	b + 20.0f;
+			
+			}
+			else if (x=15||x<15) {
+				x = 1;
+				a = 20.0f;
+				b = 20.0f;
+			}
+
+			//Color our shape
+			rectangle.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
+			//Color window 
+			window.clear(sf::Color(100,100,100));
+			window.draw(rectangle); // Drawing our shape
+			window.display();
+			x = x + 1;
+			Sleep(1000);
+			system("cls");
+
+		}
+
+	}
+}
